@@ -1,9 +1,0 @@
-
-#Enable HTTP/2 on Nginx#
-
-Look for this line:
-
-listen 443 ssl;
-change it to:
-listen 443 ssl http2;
-
