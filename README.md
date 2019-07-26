@@ -1,5 +1,5 @@
 
-How to get an ‘A+’ in SSL Labs Server Test with NginX configuration
+How to Nginx tuning tips TLS/SSL HTTPS – Improved TTFB/latency
 
 server {
 	listen 443 ssl;
