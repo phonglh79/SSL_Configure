@@ -1,1 +1,20 @@
-xss
+Enable HTTP/2 on Nginx
+The first step in tuning Nginx for faster ttfb/latency with https is to make sure HTTP/2 is enabled. HTTP/2 was first implemented in Nginx version 1.9.5 to replace spdy. Enabling the HTTP/2 module on Nginx is simple. We just need to add the word http2 in the server block of our Nginx config file (ex. /etc/nginx/sites-enabled/sitename). (Remember: HTTP/2 requires https)
+
+Look for this line:
+
+listen 443 ssl;
+change it to:
+
+listen 443 ssl http2;
+That’s it!
+Enable HTTP/2 on Nginx
+The first step in tuning Nginx for faster ttfb/latency with https is to make sure HTTP/2 is enabled. HTTP/2 was first implemented in Nginx version 1.9.5 to replace spdy. Enabling the HTTP/2 module on Nginx is simple. We just need to add the word http2 in the server block of our Nginx config file (ex. /etc/nginx/sites-enabled/sitename). (Remember: HTTP/2 requires https)
+
+Look for this line:
+
+listen 443 ssl;
+change it to:
+
+listen 443 ssl http2;
+That’s it!
