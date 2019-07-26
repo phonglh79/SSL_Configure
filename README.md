@@ -1,1 +1,28 @@
-# test
+## Use the DHPARAM key and ECDH curve >= 256bit ##
+ssl_dhparam /patch/dhparam.pem;
+ssl_ecdh_curve secp384r1;
+
+## Specify the TLS versions ##
+ssl_protocols   TLSv1.1 TLSv1.2;
+ssl_prefer_server_ciphers on;
+
+##Some device will not support ##
+#ssl_ciphers ECDHE-RSA-AES256-GCM-SHA512:DHE-RSA-AES256-GCM-SHA512:ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-SHA384;
+
+##Use this for all devices supports ##
+ssl_ciphers 'ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA256';
+
+ssl_session_timeout  24h;
+ssl_session_cache shared:SSL:10m;
+ssl_session_tickets off;
+ssl_buffer_size 8k;
+
+## Set HSTS to 365 days##
+add_header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" always;
+
+## OCSP stapling##
+ssl_stapling on; 
+ssl_stapling_verify on;
+ssl_trusted_certificate /patch/domain.ca-bundle;
+resolver 8.8.8.8 8.8.4.4 valid=300s;
+resolver_timeout 5s;
